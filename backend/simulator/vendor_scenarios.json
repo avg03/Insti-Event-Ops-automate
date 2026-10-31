@@ -1,0 +1,308 @@
+{
+  "vendors": [
+    {
+      "vendor_id": "cater_a",
+      "vendor_name": "Annapurna Express Catering",
+      "service_category": "catering",
+      "price_per_unit": 80,
+      "minimum_order": 50,
+      "maximum_capacity": 150,
+      "delivery_lead_time_minutes": 120,
+      "delivery_fee": 400,
+      "supported_requirements": ["vegetarian_option", "vegan_option"],
+      "negotiation_floor": 72,
+      "available_inventory": 150,
+      "cancellation_policy": {
+        "cancellation_fee_inr": 0,
+        "fee_percentage": 0,
+        "free_cancellation_hours": 24,
+        "description": "Zero cancellation fee with 24h notice"
+      },
+      "reliability_metadata": {
+        "rating": 4.6,
+        "on_time_delivery_rate": 0.95,
+        "backup_friendly": false
+      },
+      "behavior": "cancel_on_trigger"
+    },
+    {
+      "vendor_id": "cater_b",
+      "vendor_name": "Bombay Gourmet Hospitality",
+      "service_category": "catering",
+      "price_per_unit": 95,
+      "minimum_order": 50,
+      "maximum_capacity": 250,
+      "delivery_lead_time_minutes": 90,
+      "delivery_fee": 500,
+      "supported_requirements": ["vegetarian_option", "jain_option", "halal_option", "vegan_option"],
+      "negotiation_floor": 85,
+      "available_inventory": 250,
+      "cancellation_policy": {
+        "cancellation_fee_inr": 500,
+        "fee_percentage": 5,
+        "free_cancellation_hours": 12,
+        "description": "₹500 administrative fee on late cancellation; supports short notice replacement"
+      },
+      "reliability_metadata": {
+        "rating": 4.9,
+        "on_time_delivery_rate": 0.99,
+        "backup_friendly": true,
+        "hold_minutes": 60
+      },
+      "behavior": "reliable_backup"
+    },
+    {
+      "vendor_id": "cater_c",
+      "vendor_name": "Campus Canteen Co.",
+      "service_category": "catering",
+      "price_per_unit": 72,
+      "minimum_order": 30,
+      "maximum_capacity": 100,
+      "delivery_lead_time_minutes": 180,
+      "delivery_fee": 200,
+      "supported_requirements": ["vegetarian_option"],
+      "negotiation_floor": 68,
+      "available_inventory": 100,
+      "cancellation_policy": {
+        "cancellation_fee_inr": 200,
+        "fee_percentage": 2,
+        "free_cancellation_hours": 48,
+        "description": "₹200 nonrefundable retainer fee"
+      },
+      "reliability_metadata": {
+        "rating": 4.2,
+        "on_time_delivery_rate": 0.90,
+        "backup_friendly": false
+      },
+      "behavior": "small_capacity"
+    },
+    {
+      "vendor_id": "cater_d",
+      "vendor_name": "Royal Feast Banquets",
+      "service_category": "catering",
+      "price_per_unit": 120,
+      "minimum_order": 80,
+      "maximum_capacity": 400,
+      "delivery_lead_time_minutes": 60,
+      "delivery_fee": 1000,
+      "supported_requirements": ["vegetarian_option", "jain_option", "vegan_option", "gluten_free_option"],
+      "negotiation_floor": 105,
+      "available_inventory": 400,
+      "cancellation_policy": {
+        "cancellation_fee_inr": 1000,
+        "fee_percentage": 10,
+        "free_cancellation_hours": 6,
+        "description": "₹1,000 reservation fee nonrefundable"
+      },
+      "reliability_metadata": {
+        "rating": 4.95,
+        "on_time_delivery_rate": 0.99,
+        "backup_friendly": true,
+        "hold_minutes": 90
+      },
+      "behavior": "premium_reliable"
+    },
+    {
+      "vendor_id": "cater_late",
+      "vendor_name": "SlowBites Catering Services",
+      "service_category": "catering",
+      "price_per_unit": 70,
+      "minimum_order": 50,
+      "maximum_capacity": 200,
+      "delivery_lead_time_minutes": 360,
+      "delivery_fee": 300,
+      "supported_requirements": [],
+      "negotiation_floor": 65,
+      "available_inventory": 200,
+      "cancellation_policy": {
+        "cancellation_fee_inr": 500,
+        "fee_percentage": 5,
+        "free_cancellation_hours": 24,
+        "description": "Standard terms"
+      },
+      "reliability_metadata": {
+        "rating": 3.8,
+        "on_time_delivery_rate": 0.75,
+        "backup_friendly": false
+      },
+      "behavior": "late_delivery"
+    },
+    {
+      "vendor_id": "av_a",
+      "vendor_name": "SoundWave Pro Audio-Visual",
+      "service_category": "av",
+      "price_per_unit": 3000,
+      "minimum_order": 1,
+      "maximum_capacity": 150,
+      "delivery_lead_time_minutes": 60,
+      "delivery_fee": 300,
+      "supported_requirements": ["projector", "mic_set", "speakers", "hdmi_switch"],
+      "negotiation_floor": 2700,
+      "available_inventory": 3,
+      "cancellation_policy": {
+        "cancellation_fee_inr": 300,
+        "fee_percentage": 10,
+        "free_cancellation_hours": 12,
+        "description": "₹300 technician dispatch fee nonrefundable"
+      },
+      "reliability_metadata": {
+        "rating": 4.8,
+        "on_time_delivery_rate": 0.98,
+        "backup_friendly": false
+      },
+      "behavior": "reliable"
+    },
+    {
+      "vendor_id": "av_b",
+      "vendor_name": "TechStage Event Systems",
+      "service_category": "av",
+      "price_per_unit": 4500,
+      "minimum_order": 1,
+      "maximum_capacity": 300,
+      "delivery_lead_time_minutes": 45,
+      "delivery_fee": 500,
+      "supported_requirements": ["projector", "mic_set", "speakers", "hdmi_switch", "wireless_clicker", "recording"],
+      "negotiation_floor": 4000,
+      "available_inventory": 5,
+      "cancellation_policy": {
+        "cancellation_fee_inr": 500,
+        "fee_percentage": 10,
+        "free_cancellation_hours": 6,
+        "description": "₹500 holding fee"
+      },
+      "reliability_metadata": {
+        "rating": 4.9,
+        "on_time_delivery_rate": 0.99,
+        "backup_friendly": true,
+        "hold_minutes": 60
+      },
+      "behavior": "reliable_backup"
+    },
+    {
+      "vendor_id": "av_c",
+      "vendor_name": "Budget AV & Mic Rentals",
+      "service_category": "av",
+      "price_per_unit": 2200,
+      "minimum_order": 1,
+      "maximum_capacity": 80,
+      "delivery_lead_time_minutes": 120,
+      "delivery_fee": 200,
+      "supported_requirements": ["projector", "speakers"],
+      "negotiation_floor": 2000,
+      "available_inventory": 2,
+      "cancellation_policy": {
+        "cancellation_fee_inr": 200,
+        "fee_percentage": 10,
+        "free_cancellation_hours": 24,
+        "description": "₹200 nonrefundable"
+      },
+      "reliability_metadata": {
+        "rating": 4.0,
+        "on_time_delivery_rate": 0.88,
+        "backup_friendly": false
+      },
+      "behavior": "basic_budget"
+    },
+    {
+      "vendor_id": "av_late",
+      "vendor_name": "EchoLine Sound Gear",
+      "service_category": "av",
+      "price_per_unit": 2500,
+      "minimum_order": 1,
+      "maximum_capacity": 200,
+      "delivery_lead_time_minutes": 300,
+      "delivery_fee": 400,
+      "supported_requirements": ["projector", "mic_set", "speakers"],
+      "negotiation_floor": 2300,
+      "available_inventory": 2,
+      "cancellation_policy": {
+        "cancellation_fee_inr": 300,
+        "fee_percentage": 10,
+        "free_cancellation_hours": 12,
+        "description": "Standard terms"
+      },
+      "reliability_metadata": {
+        "rating": 3.9,
+        "on_time_delivery_rate": 0.80,
+        "backup_friendly": false
+      },
+      "behavior": "late_delivery"
+    },
+    {
+      "vendor_id": "seating_a",
+      "vendor_name": "Comfort Chairs & Tables",
+      "service_category": "seating",
+      "price_per_unit": 25,
+      "minimum_order": 30,
+      "maximum_capacity": 200,
+      "delivery_lead_time_minutes": 90,
+      "delivery_fee": 300,
+      "supported_requirements": ["cushioned_chairs", "registration_table"],
+      "negotiation_floor": 22,
+      "available_inventory": 200,
+      "cancellation_policy": {
+        "cancellation_fee_inr": 200,
+        "fee_percentage": 5,
+        "free_cancellation_hours": 24,
+        "description": "Standard terms"
+      },
+      "reliability_metadata": {
+        "rating": 4.7,
+        "on_time_delivery_rate": 0.97,
+        "backup_friendly": false
+      },
+      "behavior": "reliable"
+    },
+    {
+      "vendor_id": "seating_b",
+      "vendor_name": "QuickSeat Event Rentals",
+      "service_category": "seating",
+      "price_per_unit": 35,
+      "minimum_order": 40,
+      "maximum_capacity": 350,
+      "delivery_lead_time_minutes": 60,
+      "delivery_fee": 400,
+      "supported_requirements": ["cushioned_chairs", "round_tables", "registration_table"],
+      "negotiation_floor": 30,
+      "available_inventory": 350,
+      "cancellation_policy": {
+        "cancellation_fee_inr": 300,
+        "fee_percentage": 5,
+        "free_cancellation_hours": 12,
+        "description": "₹300 holding cancellation fee"
+      },
+      "reliability_metadata": {
+        "rating": 4.85,
+        "on_time_delivery_rate": 0.98,
+        "backup_friendly": true,
+        "hold_minutes": 60
+      },
+      "behavior": "reliable_backup"
+    },
+    {
+      "vendor_id": "seating_c",
+      "vendor_name": "Basic Benches & Stools",
+      "service_category": "seating",
+      "price_per_unit": 18,
+      "minimum_order": 20,
+      "maximum_capacity": 100,
+      "delivery_lead_time_minutes": 150,
+      "delivery_fee": 200,
+      "supported_requirements": ["plastic_chairs"],
+      "negotiation_floor": 15,
+      "available_inventory": 100,
+      "cancellation_policy": {
+        "cancellation_fee_inr": 150,
+        "fee_percentage": 5,
+        "free_cancellation_hours": 24,
+        "description": "Nonrefundable fee ₹150"
+      },
+      "reliability_metadata": {
+        "rating": 4.1,
+        "on_time_delivery_rate": 0.91,
+        "backup_friendly": false
+      },
+      "behavior": "small_capacity"
+    }
+  ]
+}
