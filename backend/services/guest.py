@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 from datetime import datetime
 from pathlib import Path
@@ -236,14 +237,22 @@ async def coordinate_event_guests(
     spent = 0
     max_attempts = min(len(ranked), int(constraints.get("max_invitation_attempts", max(3, required_count * 3))))
     attempted: set[str] = set()
+    used_slot_starts: set[str] = set()
     for index, entry in enumerate(ranked[:max_attempts], start=1):
         if len(confirmed) >= required_count:
             break
         candidate = entry["candidate"]
         attempted.add(candidate.id)
-        result = await _coordinate_candidate(event_id, candidate, constraints, index, spent)
+        candidate_constraints = dict(constraints)
+        candidate_constraints["slots"] = [
+            slot
+            for slot in constraints.get("slots", [])
+            if str(slot.get("starts_at")) not in used_slot_starts
+        ]
+        result = await _coordinate_candidate(event_id, candidate, candidate_constraints, index, spent)
         if result["outcome"] == "CONFIRMED_SIMULATED":
             spent += int(result["honorarium_inr"])
+            used_slot_starts.add(str(result["booking"]["slot"].get("starts_at")))
             confirmed.append(
                 {
                     "candidate": _candidate_dict(candidate),
@@ -304,12 +313,21 @@ async def recover_guest(
 ) -> dict[str, Any]:
     """Cancel an active booking and coordinate the best eligible backup."""
     cancelled = await get_guest_channel().cancel_booking(event_id, cancelled_candidate_id)
+    active_starts = {
+        str(json.loads(row["slot_json"]).get("starts_at"))
+        for row in get_guest_channel().inspect_event(event_id)["bookings"]
+        if row["status"] == "CONFIRMED_SIMULATED"
+    }
+    recovery_constraints = dict(constraints)
+    recovery_constraints["slots"] = [
+        slot for slot in constraints.get("slots", []) if str(slot.get("starts_at")) not in active_starts
+    ]
     attempts = min(len(backup_candidates), int(constraints.get("max_recovery_attempts", 3)))
     issues: list[dict[str, Any]] = []
     for index, value in enumerate(backup_candidates[:attempts], start=1):
         candidate_data = value.get("candidate", value) if isinstance(value, dict) else value
         candidate = candidate_data if isinstance(candidate_data, GuestCandidate) else GuestCandidate.model_validate(candidate_data)
-        result = await _coordinate_candidate(event_id, candidate, constraints, 1000 + index, 0)
+        result = await _coordinate_candidate(event_id, candidate, recovery_constraints, 1000 + index, 0)
         if result["outcome"] == "CONFIRMED_SIMULATED":
             return {
                 "event_id": event_id,

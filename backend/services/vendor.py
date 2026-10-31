@@ -274,6 +274,8 @@ class VendorService:
                 quantity=required_quantities[resource],
                 delivery_deadline=delivery_deadline,
             )
+            if resource == "av":
+                quotes = [quote for quote in quotes if quote.capacity >= attendance]
             candidate_offers_by_service[resource] = quotes
 
         # Current committed ledger

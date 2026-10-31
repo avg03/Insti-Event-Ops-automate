@@ -3,7 +3,7 @@ All monetary amounts are integers in INR (no floats).
 """
 
 from datetime import datetime
-from typing import Literal
+from typing import Any, Literal
 from pydantic import BaseModel, Field, model_validator
 
 Mode = Literal['LIVE_DATA', 'SIMULATED']
@@ -111,3 +111,38 @@ class AuditEvent(BaseModel):
     reason: str
     references: list[str] = []
     timestamp: datetime
+
+
+class ServiceReadiness(BaseModel):
+    """Integrated service readiness returned by the deterministic verifier."""
+
+    event_id: str
+    status: Literal['READY', 'BLOCKED', 'IN_PROGRESS']
+    checks: dict[str, bool]
+    blockers: list[str]
+    evidence_ids: list[str]
+    checked_at: datetime
+
+
+class DisruptionRequest(BaseModel):
+    event_type: Literal['VENDOR_CANCELLED', 'GUEST_CANCELLED', 'ATTENDANCE_CHANGED']
+    target_id: str | None = None
+    new_count: int | None = Field(default=None, gt=0)
+
+    @model_validator(mode='after')
+    def validate_payload(self):
+        if self.event_type in ('VENDOR_CANCELLED', 'GUEST_CANCELLED') and not self.target_id:
+            raise ValueError('target_id is required for cancellation events')
+        if self.event_type == 'ATTENDANCE_CHANGED' and self.new_count is None:
+            raise ValueError('new_count is required for attendance changes')
+        return self
+
+
+class EventCreateResponse(BaseModel):
+    event_id: str
+    status: Literal['PLANNING']
+    run_id: str
+
+
+class TimelineResponse(BaseModel):
+    items: list[dict[str, Any]]

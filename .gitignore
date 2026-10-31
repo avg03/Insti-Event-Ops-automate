@@ -1,7 +1,36 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python
 venv/
-.pytest_cache/
+.venv/
 __pycache__/
-*.pyc
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Databases
 *.db
-*.db-journal
-*.db-wal
+*.db-*
+*.sqlite
+*.sqlite3
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+*.tsbuildinfo
+
+# Logs and coverage
+*.log
+coverage/
+htmlcov/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

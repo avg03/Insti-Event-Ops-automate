@@ -11,44 +11,16 @@ import hashlib
 import os
 import re
 from datetime import datetime, timezone
-from typing import Any, Awaitable, Callable, Literal
+from typing import Any, Awaitable, Callable
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 import httpx
-from pydantic import BaseModel, Field
+from backend.schemas import EvidenceRef, GuestCandidate
 
 _PERSON_LOOKUP_CACHE: dict[str, tuple[str, dict[str, Any]]] = {}
-
-try:  # Integration owner will provide this module on the integrated branch.
-    from backend.app.schemas import EvidenceRef, GuestCandidate
-except (ImportError, ModuleNotFoundError):
-    Mode = Literal["LIVE_DATA", "SIMULATED"]
-
-    class EvidenceRef(BaseModel):
-        provider: str
-        source_id: str
-        collected_at: datetime
-        claim: str
-        support: str
-        mode: Mode
-
-    class GuestCandidate(BaseModel):
-        id: str
-        event_id: str
-        canonical_person_id: str | None
-        display_name: str
-        current_title: str | None
-        company_name: str | None
-        relevance_score: float = Field(ge=0, le=1)
-        evidence: list[EvidenceRef]
-        invitation_status: Literal[
-            "DISCOVERED",
-            "INVITED",
-            "CONDITIONAL",
-            "DECLINED",
-            "ACCEPTED",
-            "CONFIRMED_SIMULATED",
-            "CANCELLED",
-        ] = "DISCOVERED"
 
 
 class CrustdataError(RuntimeError):
