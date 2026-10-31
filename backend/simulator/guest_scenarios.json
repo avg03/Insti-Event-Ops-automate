@@ -1,0 +1,16 @@
+{
+  "scenario_id": "default_guest_coordination",
+  "negotiation_max_rounds": 3,
+  "personas": [
+    {
+      "alias": "GUEST_A",
+      "behavior": "conditional",
+      "request": {"start_after": "17:00", "honorarium_inr": 2000},
+      "later_event": "CANCELLED"
+    },
+    {"alias": "GUEST_B", "behavior": "decline", "reason": "schedule_conflict"},
+    {"alias": "GUEST_C", "behavior": "accept", "honorarium_inr": 2500},
+    {"alias": "GUEST_D", "behavior": "accept", "honorarium_inr": 3000},
+    {"alias": "GUEST_E", "behavior": "no_response"}
+  ]
+}
