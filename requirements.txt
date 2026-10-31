@@ -1,0 +1,21 @@
+# EventOps Autopilot — Python backend (Python 3.11+)
+# API and schemas
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30,<1.0
+pydantic>=2.8,<3.0
+pydantic-settings>=2.4,<3.0
+python-dotenv>=1.0,<2.0
+
+# Agent orchestration and Gemini LLM adapter
+langgraph>=0.4,<2.0
+langchain-core>=0.3,<2.0
+langchain-google-genai>=2.0,<5.0
+
+# Crustdata HTTP calls and resilient retries
+httpx>=0.27,<1.0
+tenacity>=8.3,<10.0
+
+# Tests
+pytest>=8.0,<10.0
+pytest-asyncio>=0.24,<2.0
+respx>=0.21,<1.0
